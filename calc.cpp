@@ -109,8 +109,9 @@ int operate(list<char>*&lst1, list<double>*& lst, string& s) {
         double y = pop(lst);
         if (x != 0) push(lst, y / x);
         else {
-            std::cout << "Division by zero!!!";
+            std::cout << "Division by zero!!!\n-----\n";
             return 0;
+
         }
         break;
     }
@@ -147,6 +148,7 @@ int main()
             x = strtod(pBeg, &pEnd);
             d = pEnd-pBeg;
             push(stackX, sgn * x);
+            if(sgn==-1) s+='-';
             s += str.substr(i, d)+' ';
             i+=d;
             sgn = 1;
@@ -155,7 +157,8 @@ int main()
         else {
             if (str[i] == ')') {
                 while (stackY != NULL && stackY->id != '(') {
-                    operate(stackY, stackX, s);
+                    if( operate(stackY, stackX, s)==0)
+                       return 0;
                 }
                 pop(stackY);
                 i++;
@@ -163,8 +166,9 @@ int main()
             else {
                 if (str[i] == '=') {
                     while (stackY!=NULL) {
-                        operate(stackY, stackX, s);
-                    }
+                        if( operate(stackY, stackX, s)==0)
+                            return 0;
+                        }
                     i++;
                 }
                 else {
@@ -190,6 +194,6 @@ int main()
     }
     std::cout << "\n" << s << "=";
     std::cout << "\nAnswer: " << stackX->id << "\n";
-   // std::cin >> sgn;
+    //std::cin >> sgn;
     return 0;
 }

@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1590250391 source:c:\users\Владимир\desktop\Программирование\2 семестр\calc\calc.cpp
+	<iostream>
+	<string>
+	<fstream>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<sstream>
+
